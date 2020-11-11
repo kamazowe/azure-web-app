@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("api/tasks")
 class TaskController {
     private final SqlTaskRepository repository;
 

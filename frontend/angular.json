@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "projects": {
+    "azure-web-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/azure-web-app",
+      "sourceRoot": "apps/azure-web-app/src",
+      "prefix": "frontend",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/azure-web-app",
+            "index": "apps/azure-web-app/src/index.html",
+            "main": "apps/azure-web-app/src/main.ts",
+            "polyfills": "apps/azure-web-app/src/polyfills.ts",
+            "tsConfig": "apps/azure-web-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/azure-web-app/src/favicon.ico",
+              "apps/azure-web-app/src/assets"
+            ],
+            "styles": ["apps/azure-web-app/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/azure-web-app/src/environments/environment.ts",
+                  "with": "apps/azure-web-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "azure-web-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "azure-web-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "azure-web-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/azure-web-app/tsconfig.app.json",
+              "apps/azure-web-app/tsconfig.spec.json",
+              "apps/azure-web-app/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/azure-web-app/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/azure-web-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "azure-web-app-e2e": {
+      "root": "apps/azure-web-app-e2e",
+      "sourceRoot": "apps/azure-web-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/azure-web-app-e2e/cypress.json",
+            "tsConfig": "apps/azure-web-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "azure-web-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "azure-web-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/azure-web-app-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/azure-web-app-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "azure-web-app"
+}
