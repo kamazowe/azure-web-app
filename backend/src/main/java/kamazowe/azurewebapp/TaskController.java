@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +40,17 @@ class TaskController {
     ResponseEntity<SqlTask> delete(@PathVariable int id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/createMock")
+    ResponseEntity<SqlTask> listPOstMock() {
+        SqlTask result = repository.save(mock());
+        return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
+    }
+
+    private SqlTask mock(){
+        var r = new SqlTask("Test Description", ZonedDateTime.now());
+        r.setDone(false);
+        return r;
     }
 }
