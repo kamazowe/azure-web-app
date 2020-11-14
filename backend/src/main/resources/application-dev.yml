@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tododb
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+    datasource:
+      hikari:
+        connectionTimeout: 20000
+        maximumPoolSize: 5
+  jpa:
+    hibernate.ddl-auto: update
