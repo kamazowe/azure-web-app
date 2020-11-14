@@ -1,6 +1,13 @@
 spring:
+  port: 8080
   datasource:
-    url: 'jdbc:h2:mem:taskdb'
-    username: 'sa'
-    password: 'pass'
-  jpa.hibernate.ddl-auto: update
+    url: ${AUTH_DB_URL}
+    username: ${AUTH_DB_USER}
+    password: ${AUTH_DB_PASS}
+    driver-class-name: org.postgresql.Driver
+    datasource:
+      hikari:
+        connectionTimeout: 20000
+        maximumPoolSize: 5
+  jpa:
+    hibernate.ddl-auto: update
