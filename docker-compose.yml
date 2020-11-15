@@ -1,0 +1,15 @@
+version: "3"
+services:
+
+  azure-web-app-backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+
+  azure-web-app-front:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    links:
+      - "azure-web-app-backend"
+
