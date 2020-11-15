@@ -1,12 +1,12 @@
-FROM node:12.1.0 as builder
+FROM node:12.19.0-alpine3.10 as builder
 
 WORKDIR '/app'
 
-COPY package*.json /app/
+COPY package*.json ./
 
 RUN npm install
 
-COPY . /app/
+COPY . .
 
 RUN npm run build
 
