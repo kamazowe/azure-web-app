@@ -4,12 +4,13 @@ WORKDIR '/app'
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm config set registry http://registry.npmjs.org/ \
+    && npm install --no-optional
 
 COPY . .
 
-RUN npm run build
-
+RUN npm run build-prod
+# TODO alphine
 FROM nginx
 
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
