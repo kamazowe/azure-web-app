@@ -11,7 +11,7 @@ COPY . .
 
 RUN npm run build-prod
 # TODO alphine
-FROM nginx
+FROM nginx:1.19.4-alpine
 
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
