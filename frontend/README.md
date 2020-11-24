@@ -8,5 +8,6 @@ run
 * detach ```-d``` kontener działa w tle nie ma logow w consoli
 
 
-utworzenie git ignore
 
+git bash remove multiple images
+```docker image rm -f $(docker image ls -aq)```
