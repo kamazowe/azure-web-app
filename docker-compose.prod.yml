@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  azurewebapp-front:
+    container_name: azurewebapp-front
+    image: ${AZUERE_ACR}/${AZURE_ACR_FRONTEND_IMAGE}
+    ports:
+      - "80:80"
+    links:
+      - "azurewebapp-backend"
+
+  azurewebapp-backend:
+    container_name: azurewebapp-backend
+    image: ${AZUERE_ACR}/${AZURE_ACR_BACKEND_IMAGE}
+    ports:
+      - "8080:8080"

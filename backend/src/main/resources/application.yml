@@ -1,3 +1,10 @@
 spring:
   profiles:
-    active: prod
+    active: ${PROFILE}
+  datasource:
+    url: ${AUTH_DB_URL}
+    username: ${AUTH_DB_USER}
+    password: ${AUTH_DB_PASS}
+    driver-class-name: ${SPRING_DB_DRIVER}
+server:
+  port: 8080

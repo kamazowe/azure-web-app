@@ -1,6 +1,0 @@
-version: "3"
-services:
-  azure-web-app-front:
-    image: kamazoweazurewebappacr.azurecr.io/kamazoweazurewebappacr/nginx:latest
-    ports:
-      - "8080:8080"

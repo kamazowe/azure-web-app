@@ -1,7 +1,3 @@
 spring:
-  datasource:
-    url: 'jdbc:h2:mem:taskdb'
-    username: 'sa'
-    password: 'pass'
   jpa:
     hibernate.ddl-auto: update

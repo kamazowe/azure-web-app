@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  azurewebapp-db:
+    container_name: 'azurewebapp-db'
+    image: "postgres:latest"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=${NAME_DB}
+      - POSTGRES_USER=${AUTH_DB_USER}
+      - POSTGRES_PASSWORD=${AUTH_DB_PASS}
+  azurewebapp-backend:
+    container_name: azurewebapp_backend
+    build:
+      context: "./backend"
+    environment:
+      - PROFILE=${PROFILE}
+      - AUTH_DB_URL=${AUTH_DB_URL}
+      - AUTH_DB_USER=${AUTH_DB_USER}
+      - AUTH_DB_PASS=${AUTH_DB_PASS}
+      - SPRING_DB_DRIVER=${SPRING_DB_DRIVER}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - azurewebapp-db
