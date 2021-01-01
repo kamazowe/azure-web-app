@@ -23,3 +23,13 @@ services:
       - "8080:8080"
     depends_on:
       - azurewebapp-db
+  azurewebapp-frontend:
+    container_name: azurewebapp_frontend
+    build:
+      context: "./frontend"
+    environment:
+      - NGINX_PROXY_PASS=${NGINX_PROXY_PASS}
+    ports:
+      - "80:80"
+    depends_on:
+      - azurewebapp-backend
