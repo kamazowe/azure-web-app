@@ -23,6 +23,12 @@
    - front: ./frontend/setup.sh
 
 ### DEPENDECIES:
-- docker: 19.x.x +
+
+#### RUN:
+- docker: 19.x.x + 
+    - for windows: you must have enable wsdl2,
+    - for linux: manage docker as non-root users ```https://docs.docker.com/engine/install/linux-postinstall/```
+
+#### DEVELOP:
 - node: 12.x.x +
 - java: 11
