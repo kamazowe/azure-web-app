@@ -27,8 +27,6 @@ services:
     container_name: azurewebapp_frontend
     build:
       context: "./frontend"
-    environment:
-      - NGINX_PROXY_PASS=${NGINX_PROXY_PASS}
     ports:
       - "80:80"
     depends_on:
